@@ -28,7 +28,7 @@ class TodoApp < Sinatra::Base
   end
 
   def todo_url(todo)
-    uri( "/todos/#{todo.fetch(:uid)}" )
+    uri( "/todos/#{todo["uid"] || todo[:uid]}" )
   end
 
   def todo_repr(todo)
@@ -50,7 +50,7 @@ class TodoApp < Sinatra::Base
     @repo.all_todos.map{|t|todo_repr(t)}.to_json
     # content_type :json
   end
-  
+
   post "/todos" do
     new_todo = json_body
     stored_todo = @repo.add_todo(new_todo)
