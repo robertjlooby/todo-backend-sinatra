@@ -91,4 +91,7 @@ class TodoApp < Sinatra::Base
     @repo[todo.fetch(:uid)] = todo
     todo_repr(todo).to_json
   end
+
+  get "/favicon.ico" do
+  end
 end
